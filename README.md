@@ -59,19 +59,38 @@ A comprehensive web application that applies explainable photo enhancement using
 - Python 3.8+
 - Supabase account
 
-### Backend Setup
+### Quick Start (Automated)
+
+**Windows PowerShell:**
+```powershell
+.\start.ps1
+```
+
+**Windows Command Prompt:**
+```cmd
+start.bat
+```
+
+### Manual Setup
+
+**Backend Setup:**
 ```bash
 cd backend
 pip install -r requirements.txt
-uvicorn main:app --reload
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-### Frontend Setup
+**Frontend Setup:**
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
+
+**Access the Application:**
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Documentation: http://localhost:8000/docs
 
 ### Environment Variables
 Create `.env.local` in the frontend directory:
@@ -104,13 +123,19 @@ Run the SQL schema in `supabase/schema.sql` to set up the enhanced database stru
 
 ## 🎯 Usage Flow
 
-1. **Upload**: Select an image file
-2. **Adjust**: Use sliders or enable auto-enhancement
-3. **Accessibility**: Apply filters for specific needs
-4. **Process**: AI analyzes and enhances the image
-5. **Preview**: See before/after with explanation
-6. **Save**: Create presets for future use
-7. **Download**: Get the enhanced image
+1. **Upload**: Select an image file from your device
+2. **Adjust**: Use intuitive 0-100 sliders to modify:
+   - **Brightness** (0-100): Dark to Bright
+   - **Contrast** (0-100): Low to High  
+   - **Saturation** (0-100): Muted to Vibrant
+   - **Hue** (0-100): Red Shift to Blue Shift
+   - **Exposure** (0-100): Underexposed to Overexposed
+3. **Accessibility**: Apply specialized filters for colorblind users
+4. **Auto-Enhance**: Enable AI-powered automatic optimization
+5. **Process**: Click "Process Image" to apply adjustments
+6. **Preview**: View side-by-side comparison with enhancement summary
+7. **Save Preset**: Name and save your settings for future use
+8. **Download**: Download the enhanced image with proper naming
 
 ## 🔬 Technical Details
 
@@ -122,7 +147,8 @@ Run the SQL schema in `supabase/schema.sql` to set up the enhanced database stru
 5. **Storage**: Save processed image and metadata
 
 ### API Endpoints
-- `POST /process`: Enhanced image processing with new parameters
+- `POST /process`: Enhanced image processing with 0-100 slider conversion
+- `GET /download/{file_id}`: Download processed images with proper naming
 - `GET /{file_path}`: Serve processed images
 - Supabase integration for user data and presets
 

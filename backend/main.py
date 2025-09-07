@@ -70,6 +70,19 @@ async def process_image_endpoint(
     }
 
 
+@app.get("/download/{file_id}")
+async def download_image(file_id: str):
+    """Download processed image by file ID"""
+    processed_path = os.path.join(OUTPUT_DIR, f"{file_id}_processed.jpg")
+    if os.path.exists(processed_path):
+        return FileResponse(
+            processed_path, 
+            media_type="image/jpeg",
+            filename=f"enhanced_image_{file_id}.jpg"
+        )
+    else:
+        return {"error": "File not found"}
+
 @app.get("/{file_path:path}")
 async def get_file(file_path: str):
     # Only serve files from uploads and processed directories

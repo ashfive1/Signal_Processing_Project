@@ -176,6 +176,11 @@ def process_image(input_path: str, output_path: str,
     if exposure != 0:
         img_float = np.clip(img_float * (2 ** exposure), 0, 1)
     
+    # Apply gamma correction for better tone mapping
+    if contrast != 1.0:
+        gamma = 1.0 / contrast if contrast > 0 else 1.0
+        img_float = np.power(img_float, gamma)
+    
     # Convert back to uint8
     img_processed = (img_float * 255).astype(np.uint8)
     

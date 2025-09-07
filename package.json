@@ -1,9 +1,21 @@
 {
+  "name": "photo-equalizer",
+  "version": "1.0.0",
+  "description": "A comprehensive photo editing application with AI-powered enhancements",
+  "scripts": {
+    "start": "powershell -ExecutionPolicy Bypass -File start.ps1",
+    "start-bat": "start.bat",
+    "test": "python test_integration.py",
+    "dev": "concurrently \"cd backend && python -m uvicorn main:app --reload\" \"cd frontend && npm run dev\""
+  },
   "dependencies": {
     "@supabase/auth-helpers-react": "^0.5.0",
     "@supabase/supabase-js": "^2.57.2",
     "@types/react": "^19.1.12",
     "next": "^15.5.2",
     "react": "^19.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
