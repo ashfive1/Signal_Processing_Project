@@ -59,50 +59,20 @@ A comprehensive web application that applies explainable photo enhancement using
 - Python 3.8+
 - Supabase account
 
-### Quick Start (Automated)
-
-**Windows PowerShell:**
-```powershell
-.\start.ps1
-```
-
-**Windows Command Prompt:**
-```cmd
-start.bat
-```
-
-### Manual Setup
-
 **Backend Setup:**
-```bash
 cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
+uvicorn main:app/reload
 
 **Frontend Setup:**
-```bash
 cd frontend
-npm install
+npm install //during first run
 npm run dev
-```
 
 **Access the Application:**
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000
 - API Documentation: http://localhost:8000/docs
-
-### Environment Variables
-Create `.env.local` in the frontend directory:
-```
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-NEXT_PUBLIC_API_URL=http://localhost:8000
-```
-
-### Database Setup
-Run the SQL schema in `supabase/schema.sql` to set up the enhanced database structure.
-
+- 
 ## 📊 Research Implementation
 
 ### Perceptual Quality Metrics
